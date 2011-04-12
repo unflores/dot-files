@@ -11,6 +11,7 @@ set history=700
 set clipboard+=unnamed  " Yanks go on clipboard instead.
 set number
 set mat=5 							" bracket blinking
+set paste
 colorscheme inspiration
 set wildmenu						" show files in dir for tab complete
 set laststatus=2				" show last status
