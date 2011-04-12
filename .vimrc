@@ -22,4 +22,4 @@ syntax enable 					" Enable syntax hl
 :command W w
 :command Bc Bclose
 nmap <silent> <S-tab> :NERDTreeToggle<CR>
-
+set backspace=indent,eol,start "mac backspace fix
