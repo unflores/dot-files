@@ -1,5 +1,4 @@
 set nocompatible        " vim only options, not vi compatible
-set smartindent					" add an indent if needed
 set smarttab
 set tabstop=2
 set expandtab						" expand into spaces
@@ -24,7 +23,9 @@ set smartcase
 syntax enable 					" Enable syntax hl
 :command W w
 :command Bc Bclose
-nmap <silent> <S-tab> :NERDTreeToggle<CR>
+" ctrl+e toggles nerdtree
+nmap <silent> <C-E> :NERDTreeToggle<CR>
+"nmap <silent> <C-tab> :NERDTreeToggle<CR>
 set backspace=indent,eol,start "mac backspace fix
 
 set nobackup
