@@ -36,3 +36,10 @@ set ttyfast 						" allow smoother changes
 " enable wildmenu
 set wildmode=list:longest,list:full
 set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.ds_store,*.db,.git,*.rbc,*.class,.svn
+
+
+" Teach vim to syntax highlight Vagrantfile as ruby
+augroup vagrant
+  au!
+  au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
