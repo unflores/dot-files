@@ -8,12 +8,31 @@ vimrc_target="$HOME/.vimrc"
 dot_vim="$PROJECT_DIR/.vim"
 vimrc="$PROJECT_DIR/.vimrc"
 
+dot_files=(.vim .vimrc .gitconfig)
+
+add_dot_link(){
+  target="$HOME/$1"
+  source="$PROJECT_DIR/$1"
+
+  if [ -L $target ]
+    then
+      echo "A dot-file version of $1 already exists."
+  elif [ -e $target ]
+    then
+      echo "An original version of $1 exists."
+  else
+    ln -s $source $target
+      echo "$1 added."
+  fi
+}
+
+for dot_file in ${dot_files[*]}
+do
+  add_dot_link $dot_file
+done
 
 
-if [ ! -L $dot_vim_target ]
-  then
-    ln -s $dot_vim $dot_vim_target
-fi
+
 
 if [ ! -L $vimrc_target ]
   then
