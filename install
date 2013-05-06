@@ -1,0 +1,21 @@
+#!/bin/bash
+HOME=~
+PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+dot_vim_target="$HOME/.vim"
+vimrc_target="$HOME/.vimrc"
+
+dot_vim="$PROJECT_DIR/.vim"
+vimrc="$PROJECT_DIR/.vimrc"
+
+
+
+if [ ! -L $dot_vim_target ]
+  then
+    ln -s $dot_vim $dot_vim_target
+fi
+
+if [ ! -L $vimrc_target ]
+  then
+    ln -s $vimrc $vimrc_target
+fi
