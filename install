@@ -2,39 +2,63 @@
 HOME=~
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-dot_vim_target="$HOME/.vim"
-vimrc_target="$HOME/.vimrc"
+direct_copy_dot_files=(.vim .vimrc .gitconfig)
 
-dot_vim="$PROJECT_DIR/.vim"
-vimrc="$PROJECT_DIR/.vimrc"
+append_dot_files=(.bashrc)
 
-dot_files=(.vim .vimrc .gitconfig)
+green(){
+  echo -e "\033[1;32m$1\033[0;00m";
+}
+red(){
+  echo -e "\033[1;31m$1\033[0;00m";
+}
 
 add_dot_link(){
   target="$HOME/$1"
   source="$PROJECT_DIR/$1"
 
-  if [ -L $target ]
+  if [ -L $target ] # is Symbolic link
     then
-      echo "A dot-file version of $1 already exists."
+      green "  $1 already linked"
   elif [ -e $target ]
     then
-      echo "An original version of $1 exists."
+      red "  $1 original"
   else
     ln -s $source $target
-      echo "$1 added."
+      green "  $1 added."
   fi
 }
 
-for dot_file in ${dot_files[*]}
+append_dot_link_to_source(){
+  target="$HOME/$1"
+  source="$PROJECT_DIR/$1"
+  file_linked=`grep -F "$source" $target`
+
+  if [ ! -e $target ] # Add file and source
+    then
+      `touch $target`
+      $(echo "source $source" >> $target)
+      green "  $1 created and appended"
+  elif [ "$file_linked" == '' ] # File exists and no link inside
+    then
+      $(echo "source $source" >> $target)
+      green "  $1 appended"
+  else
+    green "  $1 already appended"
+  fi
+}
+
+echo "  Linking"
+echo "  -------"
+for dot_file in ${direct_copy_dot_files[*]}
 do
   add_dot_link $dot_file
 done
 
+echo "  Appending"
+echo "  ---------"
+for dot_file in ${append_dot_files[*]}
+do
+  append_dot_link_to_source $dot_file
+done
 
-
-
-if [ ! -L $vimrc_target ]
-  then
-    ln -s $vimrc $vimrc_target
-fi

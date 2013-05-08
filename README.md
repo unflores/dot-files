@@ -1,8 +1,10 @@
-VIM dotfiles
+dotfiles
 ============
-These are my personal .vim and .vimrc files. Free for use, etc etc etc.
+These are my personal .dot-files files. The point is that you can easily define what you want and then easily pull and install them wherever you go.  The installation assumes installation in the home directory of the current user
 
 Installation
 ------------
-Simply: `rake install`
+cd ~/
+git clone git@github.com:unflores/dot-files.git
+./install
 
