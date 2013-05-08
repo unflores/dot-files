@@ -1,14 +1,14 @@
 [user]
-	name = Austin Flores
-	email = ctrl4ltdeleteme@gmail.com
+  name = Austin Flores
+  email = ctrl4ltdeleteme@gmail.com
 [alias]
-	st = status -sb
-	co = checkout
-	ci = commit
-	br = branch
-	df = diff --color
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  st = status -sb
+  co = checkout
+  ci = commit
+  br = branch
+  df = diff --color
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   log-thomas = log -p --no-merges --author='Thomas DEGEORGES'
   log-me     = log -p --no-merges --author='A Flores'
 [color]
-	ui = true
+  ui = true
