@@ -4,7 +4,7 @@ These are my personal .dot-files files. The point is that you can easily define 
 
 Installation
 ------------
-cd ~/
-git clone git@github.com:unflores/dot-files.git
-./install
+    cd ~/
+    git clone git@github.com:unflores/dot-files.git
+    ./install
 
