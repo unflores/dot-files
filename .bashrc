@@ -108,22 +108,21 @@ __git_ps1 ()
   fi
 }
 
-function ta_json(){
- curl -H "Accept: application/services.v1" "$@" | python -mjson.tool
-}
-
 export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHSTATE=1
 
-# Basique…
 # export PS1='\u@\h:\W$(__git_ps1) \$ '
 # Avec plein de couleurs…
 export PS1='\[\033[0;37m\]\u:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
+
+# Hardcoded json with Accepts header piped to json beautifier
+function a_json(){
+ curl -H "Accept: application/services.v1" "$@" | python -mjson.tool
+}
 
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-[[ -s "/Users/lefleurs/.rvm/scripts/rvm" ]] && source "/Users/lefleurs/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
