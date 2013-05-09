@@ -2,6 +2,7 @@
   name = Austin Flores
   email = ctrl4ltdeleteme@gmail.com
 [alias]
+  purr = pull --rebase
   st = status -sb
   co = checkout
   ci = commit
