@@ -123,6 +123,7 @@ function a_json(){
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
