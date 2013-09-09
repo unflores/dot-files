@@ -1,22 +1,22 @@
-set nocompatible        " vim only options, not vi compatible
+set nocompatible        " Vim only options, not vi compatible
 set smarttab
 set tabstop=2
-set expandtab						" expand into spaces
+set expandtab						" Expand into spaces
 set shiftwidth=2				" 
-set showmatch 					"	show matching brackets
+set showmatch 					"	Show matching brackets
 set ruler
-set cursorline					" highlight current line
-set number							" set line numbers
+set cursorline					" Highlight current line
+set number							" Set line numbers
 set incsearch
 set hls
 set history=700
 set clipboard+=unnamed  " Yanks go on clipboard instead.
-set mat=5 							" bracket blinking
+set mat=5 							" Bracket blinking
 set paste
-set scrolloff=5					" keep 5 lines while scrolling
+set scrolloff=5					" Keep 5 lines while scrolling
 colorscheme inspiration
-set wildmenu						" show files in dir for tab complete
-set laststatus=2				" show last status
+set wildmenu						" Show files in dir for tab complete
+set laststatus=2				" Show last status
 set cmdheight=2 				" The commandbar height
 set ignorecase 					" Ignore case when searching
 set smartcase
@@ -32,15 +32,37 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-set ttyfast 						" allow smoother changes
+set ttyfast 						" Allow smoother changes
 
-" enable wildmenu
+" Enable wildmenu
 set wildmode=list:longest,list:full
 set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.ds_store,*.db,.git,*.rbc,*.class,.svn
 
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
 
-" Teach vim to syntax highlight Vagrantfile as ruby
-augroup vagrant
-  au!
-  au BufRead,BufNewFile Vagrantfile set filetype=ruby
-augroup END
+"----------------------------------------------------------------------------
+" Set Custom Filetypes
+"----------------------------------------------------------------------------
+
+au BufNewFile,BufRead {Vagrantfile,Gemfile,Rakefile,config.ru} set filetype=ruby
+
+" Close ruby method defs
+au BufRead,BufNewFile *.rb :iab def 
+\def
+\<CR>end<Up>
+
+" Retain selection after increasing/decreasing indent
+vmap > >gv
+vmap < <gv
+
+" Restore cursor position
+if has("autocmd")
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  " Strip trailing whitespace on save
+  autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+endif
