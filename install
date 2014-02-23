@@ -1,8 +1,8 @@
 #!/bin/bash
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-direct_copy_dot_files=(.vim .vimrc .gitconfig .screenrc git-completion.bash)
-append_dot_files=(.bashrc)
+direct_copy_dot_files=(.vim .vimrc .gitconfig .screenrc git-completion.bash .bash_profile)
+append_dot_files=(.bashrc )
 
 green(){
   echo -e "\033[1;32m$1\033[0;00m";
