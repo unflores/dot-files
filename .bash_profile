@@ -1,1 +1,1 @@
-source /Users/lefleurs/dot-files/.bashrc
+source ~/dot-files/.bashrc
