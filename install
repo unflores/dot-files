@@ -12,7 +12,7 @@ red(){
 }
 
 add_dot_link(){
-  target="$HOME/$1"
+  target="~/$1"
   source="$PROJECT_DIR/$1"
 
   if [ -L $target ] # is Symbolic link
@@ -28,7 +28,7 @@ add_dot_link(){
 }
 
 append_dot_link_to_source(){
-  target="$HOME/$1"
+  target="~/$1"
   source="$PROJECT_DIR/$1"
   file_linked=`grep -F "$source" $target`
 
