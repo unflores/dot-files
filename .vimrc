@@ -23,10 +23,17 @@ set smartcase           " No case set then search up + low, else lock case
 syntax enable 					" Enable syntax hl
 :command W w
 :command Bc Bclose
+
+" Nerd Tree
+" ctrl+ww flips back and forth between nerdtree and editor
 " ctrl+e toggles nerdtree
 nmap <silent> <C-E> :NERDTreeToggle<CR>
+
 "nmap <silent> <C-tab> :NERDTreeToggle<CR>
 set backspace=indent,eol,start "mac backspace fix
+
+"Show hidden files by default
+let g:NERDTreeShowHidden=1
 
 set nobackup
 set noswapfile
