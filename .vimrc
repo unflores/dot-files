@@ -1,15 +1,15 @@
 set nocompatible        " Vim only options, not vi compatible
-set smarttab
+" set smarttab          " Use tabs for indentation and spaces otherwise
 set tabstop=2
 set expandtab						" Expand into spaces
-set shiftwidth=2				" 
+set shiftwidth=2				" Changes number of spaces inserted for indents
 set showmatch 					"	Show matching brackets
-set ruler
+set ruler               " Info displayed at bottom
 set cursorline					" Highlight current line
 set number							" Set line numbers
-set incsearch
-set hls
-set history=700
+set incsearch           " Search while typing instead of after
+set hls                 " Hilight search hits
+set history=700         " Command history
 set clipboard+=unnamed  " Yanks go on clipboard instead.
 set mat=5 							" Bracket blinking
 set paste
@@ -19,7 +19,7 @@ set wildmenu						" Show files in dir for tab complete
 set laststatus=2				" Show last status
 set cmdheight=2 				" The commandbar height
 set ignorecase 					" Ignore case when searching
-set smartcase
+set smartcase           " No case set then search up + low, else lock case
 syntax enable 					" Enable syntax hl
 :command W w
 :command Bc Bclose
