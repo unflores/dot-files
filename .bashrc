@@ -118,12 +118,13 @@ __git_branch_ps1 ()
 
 export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHSTATE=1
 
-if [ "vagrant" = "$(whoami)" ]; then # Vagrant box quicker load
-  export PS1='\[\033[0;31m\]\u:\[\033[0;31m\]\W\[\033[0m\]\[\033[1;31m\]$(__git_branch_ps1)\[\033[0m\] \$ '
-elif [ "austin" = "$(whoami)" ]; then # Staging box quicker load
-  export PS1='\[\033[1;36m\]\u:\[\033[1;36m\]\W\[\033[0m\]\[\033[1;31m\]$(__git_branch_ps1)\[\033[0m\] \$ '
-else # Meant for Local, standard slower but more info PS1
+# Set DEV_ENV and get a little nicer experience when moving between server environments
+if [[ $DEV_ENV == "development" ]]; then # Meant for Local, standard slower but more info PS1
   export PS1='\[\033[0;37m\]\u:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
+elif [[ $DEV_ENV == "staging" ]]; then # Staging box quicker load
+  export PS1='\[\033[1;36m\]\u:\[\033[1;36m\]\W\[\033[0m\]\[\033[1;31m\]$(__git_branch_ps1)\[\033[0m\] \$ '
+elif [[ $DEV_ENV == "production" ]]; then
+  export PS1='\[\033[0;31m\]\u:\[\033[0;31m\]\W\[\033[0m\]\[\033[1;31m\]$(__git_branch_ps1)\[\033[0m\] \$ '
 fi
 
 # Hardcoded json with Accepts header piped to json beautifier
