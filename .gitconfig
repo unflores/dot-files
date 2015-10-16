@@ -8,6 +8,7 @@
   ci = commit
   br = branch
   df = diff --color
+  dfs = diff --color --staged
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   log-thomas = log -p --no-merges --author='Thomas DEGEORGES'
   log-me     = log -p --no-merges --author='Austin Flores'
