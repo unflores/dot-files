@@ -154,9 +154,10 @@ function u_functions(){
 }
 
 alias mem_size='du -sh'
-alias grep='grep -rn --color'
+alias grep='grep --color'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias ngrep='fgrep -rn --color'
 alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
 alias staging='ssh austin@austin-www.toktoktok.com'
