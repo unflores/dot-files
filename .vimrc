@@ -32,6 +32,10 @@ nmap <silent> <C-E> :NERDTreeToggle<CR>
 "nmap <silent> <C-tab> :NERDTreeToggle<CR>
 set backspace=indent,eol,start "mac backspace fix
 
+"Map f2 and f3 for quick cycle through buffers
+map <F2> :bprevious<CR>
+map <F3> :bnext<CR>
+
 "Show hidden files by default
 let g:NERDTreeShowHidden=1
 
