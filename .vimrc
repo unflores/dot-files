@@ -36,6 +36,9 @@ set backspace=indent,eol,start "mac backspace fix
 map <F2> :bprevious<CR>
 map <F3> :bnext<CR>
 
+" Map \d to next buffer then delete previous buffer
+nmap <leader>d :bprevious<CR>:bdelete #<CR>
+
 "Show hidden files by default
 let g:NERDTreeShowHidden=1
 
