@@ -160,6 +160,8 @@ alias egrep='egrep --color=auto'
 alias ngrep='fgrep -rn --color'
 alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
+alias dockerps='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
+
 alias staging='ssh austin@austin-www.toktoktok.com'
 alias production001='ssh austin@ttt_production001'
 alias search001='ssh admin@ttt_search001'
