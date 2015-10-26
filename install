@@ -23,7 +23,7 @@ add_dot_link(){
       red "  $1 original"
   else
     ln -s $source $target
-      green "  $1 added."
+      green "  $1 added"
   fi
 }
 
