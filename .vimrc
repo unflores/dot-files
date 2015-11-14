@@ -1,9 +1,11 @@
 set nocompatible        " Vim only options, not vi compatible
-" set smarttab          " Use tabs for indentation and spaces otherwise
+set smarttab          " Use tabs for indentation and spaces otherwise
 set tabstop=2
 set expandtab						" Expand into spaces
 set shiftwidth=2				" Changes number of spaces inserted for indents
 set showmatch 					"	Show matching brackets
+set autoindent          " Vim handles indentation for you
+set smartindent         " I have had mixed results.  It should intelligently indent for you
 set ruler               " Info displayed at bottom
 set cursorline					" Highlight current line
 set number							" Set line numbers
@@ -14,13 +16,21 @@ set clipboard+=unnamed  " Yanks go on clipboard instead.
 set mat=5 							" Bracket blinking
 set paste
 set scrolloff=5					" Keep 5 lines while scrolling
-colorscheme inspiration
+colorscheme desert
 set wildmenu						" Show files in dir for tab complete
+set nobackup            " Get rid of backup files, we'll do it live!
+set noswapfile
+set nowritebackup
+set ttyfast 						" Allow smoother changes
+
+
 set laststatus=2				" Show last status
 set cmdheight=2 				" The commandbar height
 set ignorecase 					" Ignore case when searching
 set smartcase           " No case set then search up + low, else lock case
-syntax enable 					" Enable syntax hl
+filetype plugin on      " Enable plugins based on the filetype
+filetype indent on      " Enable filetype indenting
+syntax on 					" Enable syntax highlighting
 :command W w
 :command Bc Bclose
 
@@ -30,7 +40,6 @@ syntax enable 					" Enable syntax hl
 nmap <silent> <C-E> :NERDTreeToggle<CR>
 
 "nmap <silent> <C-tab> :NERDTreeToggle<CR>
-set backspace=indent,eol,start "mac backspace fix
 
 "Map f2 and f3 for quick cycle through buffers
 map <F2> :bprevious<CR>
@@ -41,12 +50,6 @@ nmap <leader>d :bprevious<CR>:bdelete #<CR>
 
 "Show hidden files by default
 let g:NERDTreeShowHidden=1
-
-set nobackup
-set noswapfile
-set nowritebackup
-
-set ttyfast 						" Allow smoother changes
 
 " Enable wildmenu
 set wildmode=list:longest,list:full
@@ -80,4 +83,21 @@ if has("autocmd")
   " Strip trailing whitespace on save
   autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
   autocmd BufWritePre *.erb,*.md,*.haml,*.scss :%s/\s\+$//e
+endif
+
+"Fixes some syntax coloring problems.
+"Pulled it from here: http://vim.wikia.com/wiki/Using_vim_color_schemes_with_Putty
+if &term =~ "xterm"
+  " 256 colors
+  let &t_Co = 256
+  " restore screen after quitting
+  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l\<Esc>8"
+  if has("terminfo")
+    let &t_Sf = "\<Esc>[3%p1%dm"
+    let &t_Sb = "\<Esc>[4%p1%dm"
+  else
+    let &t_Sf = "\<Esc>[3%dm"
+    let &t_Sb = "\<Esc>[4%dm"
+  endif
 endif
