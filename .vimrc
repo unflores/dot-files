@@ -21,6 +21,7 @@ set wildmenu						" Show files in dir for tab complete
 set nobackup            " Get rid of backup files, we'll do it live!
 set noswapfile
 set nowritebackup
+set nowrap              " This should help me to make a newline when I should :)
 set ttyfast 						" Allow smoother changes
 
 
