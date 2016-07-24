@@ -10,8 +10,9 @@
   df = diff --color
   dfs = diff --color --staged
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-  log-thomas = log -p --no-merges --author='Thomas DEGEORGES'
+  log-others = log -p --no-merges --author='Charles'
   log-me     = log -p --no-merges --author='Austin Flores'
+  new-commits= log master..dev --pretty=oneline --no-merges --author='Austin'
 [color]
   ui = true
 [pull]
