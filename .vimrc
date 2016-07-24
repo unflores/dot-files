@@ -14,7 +14,6 @@ set hls                 " Hilight search hits
 set history=700         " Command history
 set clipboard+=unnamed  " Yanks go on clipboard instead.
 set mat=5 							" Bracket blinking
-set paste
 set scrolloff=5					" Keep 5 lines while scrolling
 colorscheme desert
 set wildmenu						" Show files in dir for tab complete
