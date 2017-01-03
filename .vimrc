@@ -1,3 +1,4 @@
+execute pathogen#infect()
 set nocompatible        " Vim only options, not vi compatible
 set smarttab          " Use tabs for indentation and spaces otherwise
 set tabstop=2
