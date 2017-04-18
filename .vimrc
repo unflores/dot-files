@@ -24,7 +24,7 @@ set nowritebackup
 set nowrap              " This should help me to make a newline when I should :)
 set ttyfast 						" Allow smoother changes
 
-
+set re=1                " An older regex engine for vim which is faster for ruby syntax highlighting
 set laststatus=2				" Show last status
 set cmdheight=2 				" The commandbar height
 set ignorecase 					" Ignore case when searching
@@ -76,14 +76,18 @@ vmap < <gv
 
 " Restore cursor position
 if has("autocmd")
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+  augroup vimrc_autocmd
+    " Clear out autocmd
+    autocmd!
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
-  " Strip trailing whitespace on save
-  autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
-  autocmd BufWritePre *.yml,*.erb,*.md,*.haml,*.scss,*.js :%s/\s\+$//e
+    " Strip trailing whitespace on save
+    autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js :%s/\s\+$//e
+  augroup END
 endif
 
 "Fixes some syntax coloring problems.
