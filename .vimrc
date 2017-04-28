@@ -86,7 +86,7 @@ if has("autocmd")
 
     " Strip trailing whitespace on save
     autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
-    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js :%s/\s\+$//e
+    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js, *.jsx :%s/\s\+$//e
   augroup END
 endif
 
