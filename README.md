@@ -8,3 +8,5 @@ Installation
     git clone git@github.com:unflores/dot-files.git
     ./install
 
+TODO:
+When file is already in place, print information with yellow
