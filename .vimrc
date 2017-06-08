@@ -1,37 +1,46 @@
 execute pathogen#infect()
 set nocompatible        " Vim only options, not vi compatible
-set smarttab          " Use tabs for indentation and spaces otherwise
+set smarttab            " Use tabs for indentation and spaces otherwise
 set tabstop=2
-set expandtab						" Expand into spaces
-set shiftwidth=2				" Changes number of spaces inserted for indents
-set showmatch 					"	Show matching brackets
+set expandtab           " Expand into spaces
+set shiftwidth=2        " Changes number of spaces inserted for indents
+set showmatch           " Show matching brackets
 set autoindent          " Vim handles indentation for you
 set smartindent         " I have had mixed results.  It should intelligently indent for you
 set ruler               " Info displayed at bottom
-set cursorline					" Highlight current line
-set number							" Set line numbers
+set cursorline          " Highlight current line
+set number              " Set line numbers
 set incsearch           " Search while typing instead of after
 set hls                 " Hilight search hits
 set history=700         " Command history
 set clipboard+=unnamed  " Yanks go on clipboard instead.
-set mat=5 							" Bracket blinking
-set scrolloff=5					" Keep 5 lines while scrolling
+set mat=5               " Bracket blinking
+set scrolloff=5         " Keep 5 lines while scrolling
 colorscheme desert
-set wildmenu						" Show files in dir for tab complete
+set wildmenu            " Show files in dir for tab complete
 set nobackup            " Get rid of backup files, we'll do it live!
 set noswapfile
 set nowritebackup
 set nowrap              " This should help me to make a newline when I should :)
-set ttyfast 						" Allow smoother changes
+set ttyfast             " Allow smoother changes
+set list
+set listchars=tab:>-
 
 set re=1                " An older regex engine for vim which is faster for ruby syntax highlighting
-set laststatus=2				" Show last status
-set cmdheight=2 				" The commandbar height
-set ignorecase 					" Ignore case when searching
+set laststatus=2        " Show last status
+set cmdheight=2         " The commandbar height
+set ignorecase          " Ignore case when searching
 set smartcase           " No case set then search up + low, else lock case
+
+set exrc                " Have vim rc files outside of home
+set secure              " Protect against using certain rc file commands in project directories
+
 filetype plugin on      " Enable plugins based on the filetype
 filetype indent on      " Enable filetype indenting
-syntax on 					" Enable syntax highlighting
+syntax on               " Enable syntax highlighting
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%101v.\+/
+
 :command W w
 :command Bc Bclose
 
@@ -86,7 +95,7 @@ if has("autocmd")
 
     " Strip trailing whitespace on save
     autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
-    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js,*.jsx :%s/\s\+$//e
+    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js,*.jsx,*.ts,*.tsx,*.coffee :%s/\s\+$//e
   augroup END
 endif
 
