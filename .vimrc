@@ -34,6 +34,10 @@ set smartcase           " No case set then search up + low, else lock case
 
 set exrc                " Have vim rc files outside of home
 set secure              " Protect against using certain rc file commands in project directories
+set foldmethod=indent   " Have vim fold based on its indentation
+set foldlevel=20        " Don't let the code be folded by default unless it's more than 20 levels deep. B/c I always want code unfolded at start
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim  " Set sublime like file finder
 
 filetype plugin on      " Enable plugins based on the filetype
 filetype indent on      " Enable filetype indenting
