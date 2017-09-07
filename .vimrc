@@ -1,4 +1,9 @@
 execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+call plug#end()
+
 set nocompatible        " Vim only options, not vi compatible
 set smarttab            " Use tabs for indentation and spaces otherwise
 set tabstop=2
@@ -37,7 +42,8 @@ set secure              " Protect against using certain rc file commands in proj
 set foldmethod=indent   " Have vim fold based on its indentation
 set foldlevel=20        " Don't let the code be folded by default unless it's more than 20 levels deep. B/c I always want code unfolded at start
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim  " Set sublime like file finder
+" ctrl-p -> open fzf search in vim
+nmap <silent> <C-P> :FZF<CR>
 
 filetype plugin on      " Enable plugins based on the filetype
 filetype indent on      " Enable filetype indenting
@@ -61,6 +67,12 @@ map <F3> :bnext<CR>
 
 " Map \d to next buffer then delete previous buffer
 nmap <leader>d :bprevious<CR>:bdelete #<CR>
+
+" Map \f to open nerd tree to open file in current pane
+nmap <leader>f :NERDTreeFind<CR>
+
+" Constrain fzf by gitignored files, needs the_silver_surfer, heh, ag
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 "Show hidden files by default
 let g:NERDTreeShowHidden=1
