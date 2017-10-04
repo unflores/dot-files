@@ -42,6 +42,16 @@ set secure              " Protect against using certain rc file commands in proj
 set foldmethod=indent   " Have vim fold based on its indentation
 set foldlevel=20        " Don't let the code be folded by default unless it's more than 20 levels deep. B/c I always want code unfolded at start
 
+" Add syntax checker - js version uses jshint out of box
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " ctrl-p -> open fzf search in vim
 nmap <silent> <C-P> :FZF<CR>
 
