@@ -58,6 +58,7 @@ endfunction
 
 " ctrl-p -> open fzf search in vim
 nmap <silent> <C-P> :FZF<CR>
+let g:fzf_layout = { 'left': '~20%' }
 
 filetype plugin on      " Enable plugins based on the filetype
 filetype indent on      " Enable filetype indenting
@@ -70,8 +71,22 @@ match OverLength /\%101v.\+/
 
 " Nerd Tree
 " ctrl+ww flips back and forth between nerdtree and editor
-" ctrl+e toggles nerdtree
-nmap <silent> <C-E> :NERDTreeToggle<CR>
+" ctrl+n toggles nerdtree
+nmap <silent> <C-n> :NERDTreeToggle<CR>
+
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%#todo# "Flip the color
+set statusline+=%m      "modified flag
+set statusline+=%*      "flip the color back
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
 
 "nmap <silent> <C-tab> :NERDTreeToggle<CR>
 
