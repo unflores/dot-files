@@ -119,13 +119,7 @@ __git_branch_ps1 ()
 export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHSTATE=1
 
 # Set DEV_ENV and get a little nicer experience when moving between server environments
-if [[ $DEV_ENV == "development" ]]; then # Meant for Local, standard slower but more info PS1
-  export PS1='\[\033[0;37m\]\u:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
-elif [[ $DEV_ENV == "staging" ]]; then # Staging box quicker load
-  export PS1='\[\033[1;36m\]\u:\[\033[1;36m\]\W\[\033[0m\]\[\033[1;31m\]$(__git_branch_ps1)\[\033[0m\] \$ '
-elif [[ $DEV_ENV == "production" ]]; then
-  export PS1='\[\033[0;31m\]\u:\[\033[0;31m\]\W\[\033[0m\]\[\033[1;31m\]$(__git_branch_ps1)\[\033[0m\] \$ '
-fi
+export PS1='\[\033[0;37m\]\u:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
 
 # Hardcoded json with Accepts header piped to json beautifier
 function u_a_json(){
@@ -161,12 +155,7 @@ alias ngrep='fgrep -rn --color'
 alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
 alias dockerps='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
-
-# BEGIN CURRENT PROJECT
-alias web='cd ~/ttt/web'
-alias imports='cd ~/ttt/imports'
-alias racleur='cd ~/perso/projets/racleur'
-# END CURRENT PROJECT
+alias kill_tmux="tmux kill-session -t $(tmux display-message -p '#S')"
 
 # bundle shortcuts
 alias be='bundle exec'
@@ -187,3 +176,4 @@ then
  export PATH="$HOME/.rbenv/bin:$PATH"
  eval "$(rbenv init -)"
 fi
+
