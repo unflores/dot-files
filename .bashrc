@@ -155,7 +155,7 @@ alias ngrep='fgrep -rn --color'
 alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
 alias dockerps='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
-alias kill_tmux="tmux kill-session -t $(tmux display-message -p '#S')"
+alias kill_tmux='tmux kill-session -t $(tmux display-message -p "#S")'
 
 # bundle shortcuts
 alias be='bundle exec'
