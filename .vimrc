@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
 call plug#end()
 
+set hidden              " keep undo for hidden buffers
 set nocompatible        " Vim only options, not vi compatible
 set smarttab            " Use tabs for indentation and spaces otherwise
 set tabstop=2
