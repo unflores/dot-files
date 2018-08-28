@@ -98,7 +98,7 @@ match OverLength /\%101v.\+/
 nmap <silent> <C-n> :NERDTreeToggle<CR>
 
 set statusline=%f        "path leading to filename
-set statusline+=%t       "tail of the filename
+"set statusline+=%t       "tail of the filename
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%h      "help file flag
