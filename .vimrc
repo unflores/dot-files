@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
 call plug#end()
 
+set t_Co=256
 set hidden              " keep undo for hidden buffers
 set nocompatible        " Vim only options, not vi compatible
 set smarttab            " Use tabs for indentation and spaces otherwise
@@ -25,7 +26,8 @@ set history=700         " Command history
 set clipboard+=unnamed  " Yanks go on clipboard instead.
 set mat=5               " Bracket blinking
 set scrolloff=5         " Keep 5 lines while scrolling
-colorscheme desert
+"colorscheme desert
+colorscheme tokyo-metro
 set wildmenu            " Show files in dir for tab complete
 set nobackup            " Get rid of backup files, we'll do it live!
 set noswapfile
@@ -166,21 +168,4 @@ if has("autocmd")
     autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
     autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js,*.jsx,*.ts,*.tsx,*.coffee :%s/\s\+$//e
   augroup END
-endif
-
-"Fixes some syntax coloring problems.
-"Pulled it from here: http://vim.wikia.com/wiki/Using_vim_color_schemes_with_Putty
-if &term =~ "xterm"
-  " 256 colors
-  let &t_Co = 256
-  " restore screen after quitting
-  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
-  let &t_te = "\<Esc>[?47l\<Esc>8"
-  if has("terminfo")
-    let &t_Sf = "\<Esc>[3%p1%dm"
-    let &t_Sb = "\<Esc>[4%p1%dm"
-  else
-    let &t_Sf = "\<Esc>[3%dm"
-    let &t_Sb = "\<Esc>[4%dm"
-  endif
 endif
