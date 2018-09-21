@@ -5,6 +5,10 @@ execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'othree/yajs.vim'
+  Plug 'leafgarland/typescript-vim' " Vim typescript syntax highlighting
+"  Plug 'pangloss/vim-javascript'
+"  Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 set t_Co=256
@@ -166,6 +170,6 @@ if has("autocmd")
 
     " Strip trailing whitespace on save
     autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
-    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js,*.jsx,*.ts,*.tsx,*.coffee :%s/\s\+$//e
+    autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js,*.ts,*.tsx,*.jsx,*.ts,*.tsx,*.coffee :%s/\s\+$//e
   augroup END
 endif
