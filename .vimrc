@@ -7,6 +7,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'othree/yajs.vim'
   Plug 'leafgarland/typescript-vim' " Vim typescript syntax highlighting
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  Plug 'Quramy/tsuquyomi'
 "  Plug 'pangloss/vim-javascript'
 "  Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
