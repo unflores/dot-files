@@ -1,16 +1,32 @@
-execute pathogen#infect()
 " vim-plug
 " :PlugInstall from vim console
-" fzf needs `apt-get install silversearcher-ag` to be worth a damn
+" fzf needs `sudo apt-get install silversearcher-ag` to be worth a damn
 call plug#begin('~/.vim/plugged')
+  Plug 'scrooloose/nerdtree'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'othree/yajs.vim'
   Plug 'leafgarland/typescript-vim' " Vim typescript syntax highlighting
-  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-  Plug 'Quramy/tsuquyomi'
-"  Plug 'pangloss/vim-javascript'
-"  Plug 'maxmellon/vim-jsx-pretty'
+  "
+  Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+  " For async completion
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+
+  " Syntax 
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'tpope/vim-haml'
+  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'groenewege/vim-less'
+  Plug 'slim-template/vim-slim'
+  Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 set t_Co=256
@@ -79,6 +95,10 @@ function! s:buflist()
   redir END
   return split(ls, '\n')
 endfunction
+
+" deoplete setup
+let g:deoplete#enable_at_startup = 1
+
 
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
