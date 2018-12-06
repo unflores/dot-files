@@ -10,24 +10,34 @@ green(){
 red(){
   echo -e "\033[1;31m$1\033[0;00m";
 }
-
-add_dot_link(){
-  target="$HOME/$1"
-  source="$PROJECT_DIR/$1"
+# $1 file name
+# $2 is target path if it exists
+add_link(){
+  filename=$1
+  targetpath=$2
+  
+  if [ -z "$targetpath" ]
+    then
+      target="$HOME/$filename"
+      source="$PROJECT_DIR/$filename"
+  else
+    target="$targetpath/$filename"
+    source="$PROJECT_DIR/$filename"
+  fi
 
   if [ -L $target ] # is Symbolic link
     then
-      green "  $1 already linked"
+      green "  $filename already linked"
   elif [ -e $target ]
     then
-      red "  $1 original"
+      red "  $filename original"
   else
     ln -s $source $target
-      green "  $1 added"
+      green "  $filename added"
   fi
 }
 
-append_dot_link_to_source(){
+append_link_to_source(){
   target="$HOME/$1"
   source="$PROJECT_DIR/$1"
   file_linked=`grep -F "$source" $target`
@@ -48,15 +58,21 @@ append_dot_link_to_source(){
 
 echo "  Linking"
 echo "  -------"
+if [ ! -d "~/.config" ] || [ ! -d "~/.config/nvim" ]; then
+  `mkdir -p ~/.config/nvim/`
+fi
+
+add_link "init.vim" "$HOME/.config/nvim"
+
 for dot_file in ${direct_copy_dot_files[*]}
 do
-  add_dot_link $dot_file
+  add_link $dot_file
 done
 
 echo "  Appending"
 echo "  ---------"
 for dot_file in ${append_dot_files[*]}
 do
-  append_dot_link_to_source $dot_file
+  append_link_to_source $dot_file
 done
 
