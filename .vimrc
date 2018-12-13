@@ -19,6 +19,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
+  Plug 'vim-airline/vim-airline', {'do': './install.sh'}
+  Plug 'vim-airline/vim-airline-themes'
+  " Display buffers in tabline 
+  Plug 'bling/vim-bufferline'
+
+
+  " Display tab character
+  Plug 'Yggdroot/indentLine'
+
   " Syntax 
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'tpope/vim-haml'
