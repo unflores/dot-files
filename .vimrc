@@ -3,10 +3,10 @@
 " fzf needs `sudo apt-get install silversearcher-ag` to be worth a damn
 call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
+  "Plug 'jistr/vim-nerdtree-tabs'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'othree/yajs.vim'
-  Plug 'leafgarland/typescript-vim' " Vim typescript syntax highlighting
+  Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript'] }  " Vim typescript syntax highlighting
   "
   Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
@@ -18,7 +18,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-
+  " Prettier will go through my files and standardize the js
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript']}
   Plug 'vim-airline/vim-airline', {'do': './install.sh'}
   Plug 'vim-airline/vim-airline-themes'
   " Display buffers in tabline 
@@ -29,13 +32,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
 
   " Syntax 
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'tpope/vim-haml'
+"  Slow as fuck
+"  Plug 'othree/yajs.vim', { 'for': ['javascript', 'typescript'] }
+  Plug 'HerringtonDarkholme/yats.vim', { 'build': './install.sh' }
+  Plug 'tpope/vim-haml', { 'for':['haml'] }
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'plasticboy/vim-markdown'
   Plug 'groenewege/vim-less'
-  Plug 'slim-template/vim-slim'
-  Plug 'vim-ruby/vim-ruby'
+  Plug 'slim-template/vim-slim', { 'for': ['slim'] }
+  Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 call plug#end()
 
 set t_Co=256
@@ -83,6 +88,26 @@ set foldlevel=20        " Don't let the code be folded by default unless it's mo
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
+" Set indent character
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 239
+" Fix conflict with json syntax
+autocmd Filetype json let g:indentLine_enabled = 0
+
+
+" Manage buffers with tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='luna'
+"let g:airline#extensions#syntastic#enabled = 1
+
+
+let g:bufferline_echo = 0
+autocmd VimEnter *
+    \ let &statusline='%{bufferline#refresh_status()}'
+      \ .bufferline#get_status_string()
+
+let g:bufferline_active_highlight = 'StatusLine'
+
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 function! XTermPasteBegin()
@@ -107,7 +132,8 @@ endfunction
 
 " deoplete setup
 let g:deoplete#enable_at_startup = 1
-
+" have deoplete from current buffer directory
+let g:deoplete#file#enable_buffer_path = 0
 
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
@@ -126,8 +152,8 @@ syntax on               " Enable syntax highlighting
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%101v.\+/
 
-:command W w
-:command Bc Bclose
+":command W w
+":command Bc Bclose
 
 " Nerd Tree
 " ctrl+ww flips back and forth between nerdtree and editor
