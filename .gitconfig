@@ -23,3 +23,5 @@
   default = tracking
 [push]
   default = current
+[core]
+	editor = nvim
