@@ -133,7 +133,7 @@ endfunction
 " deoplete setup
 let g:deoplete#enable_at_startup = 1
 " have deoplete from current buffer directory
-let g:deoplete#file#enable_buffer_path = 0
+let g:deoplete#file#enable_buffer_path = 1
 
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
