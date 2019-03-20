@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript'] }  " Vim typescript syntax highlighting
   "
   Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-
+"  Plug 'heavenshell/vim-tslint', { 'for': ['typescript'] }
   " For async completion
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -21,11 +21,9 @@ call plug#begin('~/.vim/plugged')
   " Prettier will go through my files and standardize the js
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
-    \ 'for': ['javascript']}
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
   Plug 'vim-airline/vim-airline', {'do': './install.sh'}
   Plug 'vim-airline/vim-airline-themes'
-  " Display buffers in tabline 
-  Plug 'bling/vim-bufferline'
 
 
   " Display tab character
@@ -98,15 +96,9 @@ autocmd Filetype json let g:indentLine_enabled = 0
 " Manage buffers with tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='luna'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 "let g:airline#extensions#syntastic#enabled = 1
-
-
-let g:bufferline_echo = 0
-autocmd VimEnter *
-    \ let &statusline='%{bufferline#refresh_status()}'
-      \ .bufferline#get_status_string()
-
-let g:bufferline_active_highlight = 'StatusLine'
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
@@ -120,7 +112,7 @@ endfunction
 
 " ctrl-p -> open fzf search in vim
 nmap <silent> <C-P> :FZF<CR>
-let g:fzf_layout = { 'left': '~20%' }
+let g:fzf_layout = { 'down': '~20%' }
 
 " use fzf to build list of open buffers
 function! s:buflist()
@@ -180,6 +172,8 @@ set statusline+=\ %P    "percent through file
 "Map f2 and f3 for quick cycle through buffers
 map <F2> :bprevious<CR>
 map <F3> :bnext<CR>
+nnoremap <C-Left> :bprevious<CR>
+nnoremap <C-Right>   :bnext<CR>
 
 " Map \d to next buffer then delete previous buffer
 nmap <leader>d :bprevious<CR>:bdelete #<CR>
@@ -215,6 +209,8 @@ au BufRead,BufNewFile *.rb :iab def
 vmap > >gv
 vmap < <gv
 
+let g:prettier#autoformat = 0
+
 " Restore cursor position
 if has("autocmd")
   augroup vimrc_autocmd
@@ -228,5 +224,6 @@ if has("autocmd")
     " Strip trailing whitespace on save
     autocmd FileType python,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
     autocmd BufWritePre *.slim,*.yml,*.erb,*.md,*.haml,*.scss,*.js,*.ts,*.tsx,*.jsx,*.ts,*.tsx,*.coffee :%s/\s\+$//e
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
   augroup END
 endif
