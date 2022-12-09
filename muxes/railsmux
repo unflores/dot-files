@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Assumes being called from a simlink
+DIR=$(pwd)
+# Current pane number, first pane is unspecified
+pane=1
+
+function new_window {
+  name=$1
+  
+  if [ "$pane" -eq 1 ];then
+    tmux new-session -d -s $DIR -c "$DIR" 'bash -i'
+  
+    # First window already created
+    tmux rename-window $name
+  else
+    tmux new-window -t $DIR:$pane -d -c "$DIR" -n $name
+  fi
+
+  ((pane++))
+}
+
+new_window 'code'
+new_window 'cmd'
+new_window 'console'
+new_window 'server'
+new_window 'tests'
+new_window 'docker'
+new_window 'sidekiq'
+
+
+# Start at 1
+tmux select-window -t $DIR:1
+
+# Attach the session and start tmuxing
+tmux attach-session -t $DIR
+
