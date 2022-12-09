@@ -3,6 +3,7 @@
   email = ctrl4ltdeleteme@gmail.com
 [alias]
   aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+  branchc = for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'
   delete-merged = !git branch --merged upstream/master | grep -v '\\*\\|master\\|dev' | xargs -n 1 git branch -d 
   purr = pull --rebase
   rl = rebase -i HEAD~2
