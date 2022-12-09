@@ -121,6 +121,9 @@ export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHST
 # Set DEV_ENV and get a little nicer experience when moving between server environments
 export PS1='\[\033[0;37m\]\u:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
 
+function dcd(){
+  docker-compose exec $1 "${@:2}"
+}
 # Hardcoded json with Accepts header piped to json beautifier
 function u_a_json(){
  curl -H "Accept: application/services.v1" "$@" | python -mjson.tool
@@ -142,8 +145,9 @@ function convert_dir_psds_to_png(){
   for i in *.psd; do sips -s format png "${i}" --out "${i%psd}png"; done
 }
 
+
 # Display user functions
-function u_functions(){
+function myfunctions(){
   declare -F | egrep -v git | sed 's/declare -f //' | sed 's/^[^u][a-z\_]*//' | sed '/^\s*$/d'
 }
 
@@ -155,11 +159,26 @@ alias ngrep='fgrep -rn --color'
 alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
 alias dockerps='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
-alias kill_tmux='tmux kill-session -t $(tmux display-message -p "#S")'
-
-# bundle shortcuts
+alias killtmux='tmux kill-session -t $(tmux display-message -p "#S")'
+alias npmglobalinstalled='npm list -g --depth 0'
+alias deletemerged='git branch | awk "{print $1}"| xargs git branch -d'
+alias stagingapp='ssh -J austin@miles.comptoirdubitcoin.fr austin@app01.coinhouse.eu'
+alias stagingcounter='ssh austin@web03.comptoirdubitcoin.fr'
+alias stagingsidekiq='ssh austin@sidekiq01.comptoirdubitcoin.fr'
+alias coinhousepods='kubectl get pods --namespace=feature-staging --kubeconfig=/infra/professionel/coinhouse/config-coinhouse'
+alias server='ssh ubuntu@192.168.0.23'
+alias ddiff='git log --name-status  develop.. |grep "^A\s"'
+alias ldiff='git log --name-status  -10 |grep "^A\s"'
+alias restart_wifi='service network-manager restart'
+# command shortcuts
 alias be='bundle exec'
+alias dup='docker-compose up'
+alias dcd='docker-compose exec dev'
+alias dct='docker-compose exec test'
+alias dce='docker-compose exec'
 
+alias railsmux='${HOME}/dot-files/muxes/railsmux'
+alias nodemux='${HOME}/dot-files/muxes/nodemux'
 # Derp fix
 alias sl=ls
 
