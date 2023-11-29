@@ -170,13 +170,15 @@ alias server='ssh ubuntu@192.168.0.23'
 alias ddiff='git log --name-status  develop.. |grep "^A\s"'
 alias ldiff='git log --name-status  -10 |grep "^A\s"'
 alias restart_wifi='service network-manager restart'
+
 # command shortcuts
 alias be='bundle exec'
-alias dup='docker-compose up'
-alias dcd='docker-compose exec dev'
-alias dct='docker-compose exec test'
-alias dce='docker-compose exec'
-
+alias ruby_churn='git log --since="12 month ago" --name-only --pretty=format: | grep \.rb |sort | uniq -c | sort -rn| head -n20'
+alias dup='docker compose up'
+alias dcd='docker compose exec dev'
+alias dct='docker compose exec test'
+alias dce='docker compose exec'
+alias aws_login='aws sso login --profile staging'
 alias railsmux='${HOME}/dot-files/muxes/railsmux'
 alias nodemux='${HOME}/dot-files/muxes/nodemux'
 # Derp fix

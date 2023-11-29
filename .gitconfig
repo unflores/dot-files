@@ -4,19 +4,15 @@
 [alias]
   aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
   branchc = for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'
+  rom = pull --rebase origin master
   delete-merged = !git branch --merged upstream/master | grep -v '\\*\\|master\\|dev' | xargs -n 1 git branch -d 
-  purr = pull --rebase
-  rl = rebase -i HEAD~2
   st = status -sb
-  co = checkout
   ci = commit
-  br = branch
   df = diff --color
   dfs = diff --color --staged
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   lola = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=short --graph --all
-  log-others = log -p --no-merges --author='Charles'
-  log-me     = log -p --no-merges --author='Austin Flores'
+  plog = log --abbrev-commit --abbrev=5 --date=format:'%Y-%m-%d %H:%m'
   new-commits= log dev.. --pretty=oneline --no-merges
 [color]
   ui = true
