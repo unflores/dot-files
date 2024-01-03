@@ -26,7 +26,7 @@ new_window 'console'
 new_window 'server'
 new_window 'tests'
 new_window 'docker'
-new_window 'sidekiq'
+new_window 'jobs'
 
 
 # Start at 1

@@ -146,11 +146,6 @@ function convert_dir_psds_to_png(){
 }
 
 
-# Display user functions
-function myfunctions(){
-  declare -F | egrep -v git | sed 's/declare -f //' | sed 's/^[^u][a-z\_]*//' | sed '/^\s*$/d'
-}
-
 alias mem_size='du -sh'
 alias grep='grep --color'
 alias fgrep='fgrep --color=auto'
@@ -181,6 +176,8 @@ alias dce='docker compose exec'
 alias aws_login='aws sso login --profile staging'
 alias railsmux='${HOME}/dot-files/muxes/railsmux'
 alias nodemux='${HOME}/dot-files/muxes/nodemux'
+alias flasktree="tree -a -I '__pycache__|*git|*cache' ./"
+
 # Derp fix
 alias sl=ls
 
@@ -197,4 +194,8 @@ then
  export PATH="$HOME/.rbenv/bin:$PATH"
  eval "$(rbenv init -)"
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
