@@ -174,7 +174,7 @@ alias dcd='docker compose exec dev'
 alias dct='docker compose exec test'
 alias dce='docker compose exec'
 alias aws_login='aws sso login --profile staging'
-alias railsmux='${HOME}/dot-files/muxes/railsmux'
+alias servermux='${HOME}/dot-files/muxes/servermux'
 alias nodemux='${HOME}/dot-files/muxes/nodemux'
 alias flasktree="tree -a -I '__pycache__|*git|*cache' ./"
 
