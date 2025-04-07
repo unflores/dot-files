@@ -121,9 +121,6 @@ export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHST
 # Set DEV_ENV and get a little nicer experience when moving between server environments
 export PS1='\[\033[0;37m\]\u:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
 
-function dcd(){
-  docker-compose exec $1 "${@:2}"
-}
 # Hardcoded json with Accepts header piped to json beautifier
 function u_a_json(){
  curl -H "Accept: application/services.v1" "$@" | python -mjson.tool
@@ -132,12 +129,6 @@ function u_a_json(){
 # tar zip as itself with extension info
 function u_tar_zip(){
  tar -zcvf $1.tar.gz $1
-}
-
-# pull and push to current branch
-function u_pap(){
-  a="$(git branch | egrep '\*' | sed -n '/\* /s///p')"
-  git pull --rebase origin $a && git push origin $a
 }
 
 # Convert psds to pngs in current directory
@@ -153,7 +144,6 @@ alias egrep='egrep --color=auto'
 alias ngrep='fgrep -rn --color'
 alias summary='git log --date=iso --author="Austin Flores" --summary --show-notes --oneline --date-order --since=`date -v"-1d" "+%Y-%m-%d"`'
 
-alias dockerps='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 alias killtmux='tmux kill-session -t $(tmux display-message -p "#S")'
 alias npmglobalinstalled='npm list -g --depth 0'
 alias deletemerged='git branch | awk "{print $1}"| xargs git branch -d'
@@ -171,8 +161,8 @@ alias be='bundle exec'
 alias ruby_churn='git log --since="12 month ago" --name-only --pretty=format: | grep \.rb |sort | uniq -c | sort -rn| head -n20'
 alias dup='docker compose up'
 alias dcd='docker compose exec dev'
-alias dct='docker compose exec test'
 alias dce='docker compose exec'
+alias dex='docker compose exec backend'
 alias aws_login='aws sso login --profile staging'
 alias servermux='${HOME}/dot-files/muxes/servermux'
 alias nodemux='${HOME}/dot-files/muxes/nodemux'

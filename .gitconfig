@@ -14,6 +14,7 @@
   lola = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=short --graph --all
   plog = log --abbrev-commit --abbrev=5 --date=format:'%Y-%m-%d %H:%m'
   new-commits= log dev.. --pretty=oneline --no-merges
+  log-file-changes = "!git log --pretty=format:'commit %H%nAuthor: %an%nFiles Changed:' --name-status"
 [color]
   ui = true
 [pull]
