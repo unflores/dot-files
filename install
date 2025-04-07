@@ -1,7 +1,7 @@
 #!/bin/bash
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-direct_copy_dot_files=(.tmux.conf .vim .vimrc .gitconfig .screenrc git-completion.bash .bash_profile)
+direct_copy_dot_files=(.tmux.conf .vim .vimrc .gitconfig git-completion.bash .bash_profile)
 append_dot_files=(.bashrc )
 
 green(){
@@ -10,8 +10,6 @@ green(){
 red(){
   echo -e "\033[1;31m$1\033[0;00m";
 }
-# $1 file name
-# $2 is target path if it exists
 add_link(){
   filename=$1
   targetpath=$2
